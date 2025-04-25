@@ -58,7 +58,7 @@ int main()
 	for (int i = 0;i < x - 7;i++) {
 		for (int j = 0;j < y - 7;j++) {
 			for (int k = 0;k < 8;k++) {
-				str = all[i+k].substr(j, 8);
+				str = all[i+k].substr(j, 8);	//i+k,j위치의 str 8개를 가져오기
 				test[k] = str;
 			}
 			min_sco = min(min_sco, check(test));
