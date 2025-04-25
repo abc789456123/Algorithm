@@ -38,7 +38,7 @@ int main()
 
 	int M;
 	cin >> M;
-	int* vm = new int[M];
+	vector<int> vm(M);
 
 	for (int i = 0;i < M;i++) {
 		cin >> num;
@@ -49,4 +49,3 @@ int main()
 		cout << find(vn, 0, N-1, vm[i]) << "\n";
 	}
 }
-
