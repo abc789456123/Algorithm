@@ -6,7 +6,7 @@
 using namespace std;
 
 // 8*8 = 64 보드에 색칠한다면 
-// n개를 칠하거나 64-n개를 칠하면 정상적으로 만들 수 있음
+// n개를 칠하거나 64-n개를 칠하면 정상적으로 만들 수 있음 
 int check(vector<string> chess) {
 	int cnt = 0;
 	for (int i = 0;i < 8;i++) {
