@@ -8,52 +8,50 @@
 #include <set>
 
 using namespace std;
-
-// check 함수는 랜선 길이 len으로 만들 수 있는 랜선 수를 계산
-long long check(const vector<long long>& v, long long len, int K, int N) {
-    long long res = 0;
-    for (int i = 0; i < K; i++) {
-        res += v[i] / len;
-        if (res >= N) return res;  // 필요한 만큼 만들었으면 조기 종료
-    }
-    return res;
+int check(long long* v, long long len, int K) {
+	int res = 0;
+	for (int i = 0;i < K;i++) {
+		res += v[i] / len;
+	}
+	return res;
 }
 
-// 이진 탐색 함수
-long long binary_search(const vector<long long>& v, long long left, long long right, int K, int N) {
-    long long result = 0;
-    while (left <= right) {
-        long long mid = left + (right - left) / 2;
-        if (mid == 0) break;  // mid == 0이 되면 나누기 에러 방지
-
-        if (check(v, mid, K, N) >= N) {
-            result = mid;
-            left = mid + 1;
-        }
-        else {
-            right = mid - 1;
-        }
-    }
-    return result;
+long long binary_search(long long* v, long long left, long long right, int K, int N) {
+	//랜선목록, 최소, 최대, 랜선개수, 목표개수
+	long long mid = left + (right - left) / 2;
+	if (left > right) {
+		return right;
+	}
+	if (check(v, mid, K) < N) {
+		return binary_search(v, left, mid - 1, K, N);
+	}
+	else {
+		return binary_search(v, mid + 1, right, K, N);
+	}
 }
 
-int main() {
-    ios_base::sync_with_stdio(false);
-    cin.tie(NULL);
-    cout.tie(NULL);
+int main()
+{
+	ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+	cout.tie(NULL);
 
-    int K, N;
-    cin >> K >> N;
+	int K, N;
 
-    vector<long long> v(K);
-    for (int i = 0; i < K; i++) {
-        cin >> v[i];
-    }
+	cin >> K >> N;
 
-    long long right = *max_element(v.begin(), v.end());
-    long long answer = binary_search(v, 1, right, K, N);
+	long long* v = new long long[K]();
+	for (int i = 0;i < K;i++) {
+		cin >> v[i];
+	}
 
-    cout << answer;
+	//최대값, 최소값 구하기
+	long long right = *max_element(v, v + K);
 
-    return 0;
+	long long test = binary_search(v, 1, right, K, N);
+
+	cout << test;
+
+	delete[] v;
+	return 0;
 }
