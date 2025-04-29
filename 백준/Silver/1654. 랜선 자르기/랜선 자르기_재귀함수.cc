@@ -6,7 +6,7 @@
 #include <unordered_map>
 #include <cmath>
 #include <set>
-
+//
 using namespace std;
 int check(long long* v, long long len, int K) {
 	int res = 0;
