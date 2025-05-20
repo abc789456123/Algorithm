@@ -37,19 +37,23 @@ int main()
 
 	int cnt = 0;
 	bool flag = true;
+	int res = 0;
 
-	for (int i = 0; i < (M - strLen + 1); i++) {
-		for (int j = 0;j < strLen;j++) {
-			if (S[i + j] != str[j]) {
-				flag = false;
-				break;
+	for (int i = 1; i < (M - 1); i++) {
+		if (S[i-1] == 'I'&& S[i] == 'O'&& S[i+1] == 'I') {
+			cnt++;
+			i++;
+			if (cnt >= N) {
+				res++;
 			}
 		}
-		if (flag == true) cnt++;
-		else flag = true;
+		else {
+			cnt = 0;
+		}
+		
 	}
 
-	cout << cnt;
+	cout << res;
 
 	return 0;
 }
