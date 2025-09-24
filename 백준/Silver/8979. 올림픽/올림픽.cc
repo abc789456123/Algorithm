@@ -23,7 +23,7 @@ int main() {
 	for (int i = 0; i < N; i++) {
 		cin >> rank[i][3] >> rank[i][0] >> rank[i][1] >> rank[i][2];
 	}
-	sort(rank.begin(), rank.end());
+	sort(rank.rbegin(), rank.rend());
 
 	int res, j;
 	for (int i = 0; i < N; i++) {
